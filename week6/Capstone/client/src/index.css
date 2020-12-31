@@ -1,0 +1,223 @@
+* {
+    box-sizing: border-box;
+    font-family: sans-serif;
+    margin: 0;
+    padding: 0;
+    color: navy;
+  }
+  
+  @media screen and (max-width: 750px) {
+  
+    p {
+      margin: 5px;    
+    }
+  
+    .tweetContainer {
+      display: grid;
+      grid-template-columns: 1fr;
+      grid-template-rows: auto;
+      display: flex;
+      flex-direction: column; 
+      font-size: 12px;
+    }
+  
+    .tweet {
+      grid-template-rows: auto;
+      border: 1px solid lightgray;
+      border-radius: 10px;
+      padding: 10px;
+      margin: 5px;
+      text-align: center;    
+      font-size: 12px;
+    }
+  
+    form {
+      grid-template-rows: auto;
+      border: 1px solid lightgray;
+      border-radius: 12px;
+      padding: 10px;
+      margin: 5px;
+      text-align: center;
+    }
+    
+    h3 {
+      grid-column: 1 / 2;
+      grid-row: 1 / 2;
+      margin: 5px;
+      color: blue;
+    }
+  
+    #boldName{
+      grid-column: 1 / 2;
+      grid-row: 2 / 3;
+      font-size: 12px;
+    }
+  
+    #tagnameLight{
+      grid-column: 1 / 2;
+      grid-row: 3 / 4;
+      font-size: 12px;      
+    }
+  
+    #tweetSpace{
+      grid-column: 1 / 2;
+      grid-row: 4 / 5;
+      font-size: 12px;
+    }
+
+    textarea {
+      max-width: fit-content; 
+      max-height: fit-content; 
+    }
+  
+    input {
+      padding: 10px;
+      font-size: 12px;
+      border: 1px solid lightgray;
+      border-radius: 8px;
+      margin: 5px
+    }
+
+    #addTwitterButton {
+      grid-column: 1 / 2;
+      grid-row: 5 / 6;
+      padding: 5px;
+      border-radius: 5px;
+      font-size: 16px;  
+      border-radius: 3px;
+      font-size: 10px; 
+      width: 65px;
+      height: 25px;
+      border-radius: 3px;
+      background-color: blue;
+      color: white; 
+    }
+
+    .editButton {    
+      width: 47px;
+      height: 22px;
+      margin-left: 15px;
+      margin-top: 5px;    
+      border-radius: 3px;
+      font-size: 9px;   
+      background-color: blue;
+      color: white; 
+    }
+
+    .deleteButton {
+      background-color: darkorchid;
+      color: white;
+      border-radius: 3px;
+      margin-left: 0px;
+      font-size: 9px; 
+      width: 47px;
+      height:22px;
+    }    
+  }
+  
+  
+  @media screen and (min-width: 751px) {
+  
+    body {
+      background-image: url("background.png");
+      background-size: contain;    
+    }
+  
+    h3 {
+      color: blue;
+      margin: 5px;
+    }
+  
+    p {
+      margin: 5px;    
+    }
+  
+    .tweetContainer {
+      display: flex;
+      flex-direction: column;
+      margin: 0 25px;
+    }
+  
+    .tweet {
+      border: 1px solid lightgrey;
+      border-radius: 10px;
+      padding: 30px;
+      margin-left: 225px;
+      margin-right: 225px;
+      text-align: left;
+    }
+
+    #boldName {
+      font-weight: bold;
+      font-size: 13px;
+      padding-left: 5px;
+    }
+
+    #tagnameLight {
+      font-weight: lighter;
+      font-size: 13px;
+    }
+
+    #tweetSpace {
+      padding-bottom: 5px;
+    }
+
+    #tweetText {
+      text-align: left;
+    }
+  
+    form {
+      border: 1px solid lightgrey;
+      border-radius: 10px;
+      padding: 10px;
+      margin: 5px;
+      text-align: center;
+    }
+
+    textarea {
+      max-width: fit-content; 
+      max-height: fit-content; 
+    }
+
+    input {
+      padding: 10px;
+      font-size: 16px;
+      border: 1px solid lightgray;
+      border-radius: 8px;
+      margin: 5px
+    }
+  
+    #addTwitterButton {
+      padding: 5px;
+      border-radius: 5px;
+      font-size: 16px;   
+      background-color: blue;
+      color: white; 
+    }  
+  
+    .deleteButton {
+      width: 55px;
+      height: 25px;
+      margin-top: 5px; 
+      margin-left: 30%;   
+      border-radius: 5px;
+      font-size: 12px;   
+      background-color: darkorchid;
+      color: white; 
+    }
+
+    .editButton {    
+      width: 55px;
+      height: 25px;
+      margin-left: 15px;
+      margin-top: 5px; 
+      border-radius: 5px;
+      font-size: 12px;   
+      background-color: blue;
+      color: white; 
+    }
+    
+    #closeButton {
+      margin-left: 165px;
+    }
+  }
