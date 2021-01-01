@@ -1,35 +1,37 @@
 const express = require("express")       
 const tweetRouter = express.Router()
-const uuid = require("uuid/v4")
 
-// Data for tweets
-const tweet = [
-    { 
-        twitterName: "Angel Fire", 
-        tagname: "@girlonfire",
-        tweet: "It is a beautiful and HOT day in Louisiana.",
-        _id: uuid() 
-    },
-
-    { 
-        twitterName: "Lord Austin", 
-        tagname: "@hisKingship",
-        tweet: "Bow before me, or feel my wrath!! Who wants to play World of Warcraft?",
-        _id: uuid() 
-    },
-
-    { 
-        twitterName: "Fighter Jane", 
-        tagname: "@ninjaGirl",
-        tweet: "I'm off to MA class. Life is good!!",
-        _id: uuid() 
-    }   
-]
+const mysql = require("mysql");
+//Create a MySQL Connection Handshake using a Connection String
+const db = mysql.createConnection(
+    {
+        host: 'localhost',
+        user: 'root',
+        password: 'endTimesNow5656',
+        database: 'fssql'
+    }
+);
+ 
+db.connect((err) => {
+    if (err)
+    {
+        throw err;
+    }
+    console.log("MySQL Database Connection Established Successfully!");
+});
 
 // Get
 tweetRouter.get("/", (req, res) => {
-    res.status(200).send(tweet)
-    (err => console.log(err.response.data.errMsg))
+    let sql = "SELECT * FROM tweet";
+
+    //Run the SQL Command
+    db.query(sql, (err, result) => {
+        if (err){
+            throw err;
+        }
+        console.log(result);
+        res.send(result);
+    })
 })
 
 // Get One
@@ -58,27 +60,61 @@ tweetRouter.get("/search/tagname", (req, res, next) => {
 
 // Post
 tweetRouter.post("/", (req, res) => {
-    const newTweet = req.body
-    newTweet._id = uuid()
-    tweet.push(newTweet)
-    res.status(201).send(newTweet)
+    const {twitterName, tagname, tweet} = req.body
+    let sql = `INSERT INTO tweet (twitterName, tagName, tweet) VALUES ('${twitterName}', '${tagname}', '${tweet}');`
+
+    //Run the SQL Command
+    db.query(sql, (err, result) => {
+        if (err){
+            throw err;
+        }
+        console.log(result);
+        let tweetPost = "SELECT * FROM tweet ORDER BY ID DESC LIMIT 1;"
+        db.query(sql, (err, result) => {
+            if (err){
+                throw err;
+            }
+        res.status(200).send(result);
+    })})
 })
 
 // Delete
 tweetRouter.delete("/:tweetId", (req, res) => {
-    const tweetId = req.params.tweetID
-    const tweetIndex = tweet.findIndex(tweet => tweet._id === tweetId)
-    tweet.splice(tweetIndex, 1)
-    res.send("Successfully deleted tweet!")
+    const ID = req.params.tweetID
+    let sql = `DELETE FROM tweet WHERE ID IN(${ID});`
+
+    //Run the SQL Command
+    db.query(sql, (err, result) => {
+        if (err){
+            throw err;
+        }
+        console.log(result);
+        res.send(result);
+    })
+   
 })
 
 // Put
 tweetRouter.put("/:tweetId", (req, res) => {
-    const tweetId = req.params.tweetId
-    const updatedObject = req.body
-    const tweetIndex = tweet.findIndex(tweet => tweet._id === tweetId)
-    const updatedTweet = Object.assign(tweet[tweetIndex], updatedObject)
-    res.status(201).send(updatedTweet)
+    const ID = req.params.tweetId
+    const {twitterName, tagname, tweet} = req.body
+    let sql = `UPDATE tweet SET twitterName = '${twitterName}', tagName = '${tagname}', tweet = '${tweet}'
+                WHERE ID IN(${ID});`
+
+    //Run the SQL Command
+    db.query(sql, (err, result) => {
+        if (err){
+            throw err;
+        }
+        console.log(result);
+        let tweetPut = `SELECT * FROM tweet WHERE ID IN(${tweetId});`
+        db.query(sql, (err, result) => {
+            if (err){
+                throw err;
+            }
+        res.status(200).send(result);
+    })})
+
 })
 
 module.exports = tweetRouter

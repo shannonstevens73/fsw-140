@@ -89,7 +89,7 @@ app.get('/insertposting2', (req, res) => {
 
 //Execute a Select Command
 app.get('/getpostings', (req, res) => {
-    let sql = "SELECT * FROM postings";
+    let sql = "SELECT * FROM tweet";
 
     //Run the SQL Command
     db.query(sql, (err, result) => {

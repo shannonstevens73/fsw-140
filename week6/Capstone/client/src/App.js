@@ -15,15 +15,16 @@ function App() {
   function addTweet(newTweet){
     axios.post("/tweet", newTweet)
       .then(res => {
-        setTweet(prevTweet => [...prevTweet, res.data])
+        setTweet(prevTweet => [...prevTweet, res.data[0]])
       })
       .catch(err => console.log(err))
   }
-
+ 
   function deleteTweet(tweetId){
     axios.delete(`/tweet/${tweetId}`)
       .then(res => {
-        setTweet(prevTweet => prevTweet.filter(tweet => tweet._id !== tweetId))
+        console.log(tweetId)
+        setTweet(prevTweet => prevTweet.filter(tweet => tweet.ID !== tweetId))
       })
       .catch(err => console.log(err))
   }
@@ -31,7 +32,7 @@ function App() {
   function editTweet(updates,tweetId){
     axios.put(`/tweet/${tweetId}`, updates)
       .then(res => {
-        setTweet(prevTweet => prevTweet.map(tweet => tweet._id !== tweetId ? tweet : res.data))
+        setTweet(prevTweet => prevTweet.map(tweet => tweet.ID !== tweetId ? tweet : res.data))
       })
       .catch(err => console.log(err))
   }
@@ -50,7 +51,7 @@ function App() {
          { tweet.map(tweet => 
             <Tweet 
               {...tweet} 
-              key={tweet.twitterName}
+              key={'hi'}
               deleteTweet={deleteTweet}
               editTweet={editTweet}/>)
           }

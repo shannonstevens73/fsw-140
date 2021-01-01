@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import AddTweetForm from './AddTweetForm.js'
 
 function Tweet(props) {
-    const { twitterName, tagname, tweet, _id } = props
+    const { ID, twitterName, tagname, tweet } = props
     const [editToggle, setEditToggle] = useState(false)
     return (
         <div className="tweet">
@@ -13,7 +13,7 @@ function Tweet(props) {
                     <p id="tweetSpace">{ tweet }</p>
                     <button
                         className="deleteButton"
-                        onClick={() => props.deleteTweet(_id)}>
+                        onClick={() => props.deleteTweet(ID)}>
                         Delete
                     </button>
                     <button
@@ -28,7 +28,7 @@ function Tweet(props) {
                         twitterName={twitterName}
                         tagname={tagname}
                         tweet={tweet}
-                        _id={_id}
+                        ID={ID}
                         buttonText="Submit Edit"
                         submit={props.editTweet} 
                     />
