@@ -34,30 +34,6 @@ tweetRouter.get("/", (req, res) => {
     })
 })
 
-// Get One
-// tweetRouter.get("/:tweetId", (req, res, next) => {
-//     const tweetId = req.params.tweetId
-//     const foundTweet = tweet.find(tweet => tweet._id === tweetId)
-//     if(!foundTweet){
-//         const error = new Error(`The item with id ${tweetId} was not found.`)
-//         res.status(500)
-//         return next(error)
-//     }
-//     res.status(200).send(foundTweet)
-// })
-
-// Query
-// tweetRouter.get("/search/tagname", (req, res, next) => {
-//     const tagname = req.query.tagname
-//     if(!tagname){
-//         const error = new Error("You must provide a tagname")
-//         res.status(500)
-//         return next(error)
-//     }
-//     const filteredTweet = tweet.filter(tweet => tweet.genre === genre)
-//     res.status(200).send(filteredTweet)
-// })
-
 // Post
 tweetRouter.post("/", (req, res) => {
     const {twitterName, tagName, tweet} = req.body

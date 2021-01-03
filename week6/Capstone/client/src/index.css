@@ -120,7 +120,7 @@
   
     body {
       background-image: url("background.png");
-      background-size: contain;    
+      background-size: cover;    
     }
   
     h3 {
