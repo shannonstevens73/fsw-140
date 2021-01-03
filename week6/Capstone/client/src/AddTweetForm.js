@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 
 function AddTweetForm(props){
-    const initInputs = { twitterName: props.twitterName || "", tagname: props.tagname || "", tweet: props.tweet || "" }
+    const initInputs = { twitterName: props.twitterName || "", tagName: props.tagName || "", tweet: props.tweet || "" }
     const [inputs, setInputs] = useState(initInputs)
 
     function handleChange(e){
@@ -11,7 +11,8 @@ function AddTweetForm(props){
 
     function handleSubmit(e){
         e.preventDefault()
-        props.submit(inputs, props._id)
+        console.log(inputs, props)
+        props.submit(inputs, props.ID)
         setInputs(initInputs)
     }
 
@@ -29,12 +30,12 @@ function AddTweetForm(props){
                 
             
             <input
-                id="tagname"
+                id="tagName"
                 type="text"
-                name="tagname"
-                value={inputs.tagname}
+                name="tagName"
+                value={inputs.tagName}
                 onChange={handleChange}
-                placeholder="@tagname"/>
+                placeholder="@tagName"/>
 
             <br /><br />
 

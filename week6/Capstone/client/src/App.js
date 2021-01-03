@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'  
-import axios from 'axios'
+import axios from 'axios' 
 import Tweet from './Tweet.js'
 import AddTweetForm from './AddTweetForm'
 
@@ -20,19 +20,21 @@ function App() {
       .catch(err => console.log(err))
   }
  
-  function deleteTweet(tweetId){
-    axios.delete(`/tweet/${tweetId}`)
+  function deleteTweet(ID){
+    axios.delete(`/tweet/${ID}`)
       .then(res => {
-        console.log(tweetId)
-        setTweet(prevTweet => prevTweet.filter(tweet => tweet.ID !== tweetId))
+        console.log(ID)
+        setTweet(prevTweet => prevTweet.filter(tweet => tweet.ID !== ID))
       })
       .catch(err => console.log(err))
   }
 
-  function editTweet(updates,tweetId){
-    axios.put(`/tweet/${tweetId}`, updates)
+  function editTweet(updates, ID){
+    console.log(ID)
+    console.log(updates)
+    axios.put(`/tweet/${ID}`, updates)
       .then(res => {
-        setTweet(prevTweet => prevTweet.map(tweet => tweet.ID !== tweetId ? tweet : res.data))
+        setTweet(prevTweet => prevTweet.map(tweet => tweet.ID !== ID ? tweet : res.data[0]))
       })
       .catch(err => console.log(err))
   }
@@ -51,7 +53,7 @@ function App() {
          { tweet.map(tweet => 
             <Tweet 
               {...tweet} 
-              key={'hi'}
+              key={tweet.twitterName}
               deleteTweet={deleteTweet}
               editTweet={editTweet}/>)
           }
